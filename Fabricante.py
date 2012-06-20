@@ -14,11 +14,17 @@ def generator():
 		filename = request.form["filename"] + request.form["extension"] 
 		size = request.form["size"]
 		
-		try:
-			size = int(float(size)*829*1293)
-		except:
-			size = 1000000
 		
+		try:
+			size = float(size)
+		except:
+			size = 1
+		
+		if size > 10:
+			size = 1 
+		
+		int(size*829*1293)
+				
 		data = os.urandom(size)
 		response = Response(data, mimetype="application/octet-stream")
 		response.headers.add('Content-Disposition', 'attachment',
