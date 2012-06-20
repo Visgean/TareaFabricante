@@ -6,7 +6,7 @@ import os
 from flask import Flask, render_template, request, Response
 
 app = Flask(__name__)
-app.debug = False
+app.debug = True
 
 @app.route('/', methods = ['GET', 'POST'])
 def generator():
@@ -14,17 +14,16 @@ def generator():
 		filename = request.form["filename"] + request.form["extension"] 
 		size = request.form["size"]
 		
-		
 		try:
 			size = float(size)
 		except:
 			size = 1
 		
 		if size > 10:
-			size = 1 
+			size = 1
 		
-		int(size*829*1293)
-				
+		size = int(size*829*1293)
+		
 		data = os.urandom(size)
 		response = Response(data, mimetype="application/octet-stream")
 		response.headers.add('Content-Disposition', 'attachment',
