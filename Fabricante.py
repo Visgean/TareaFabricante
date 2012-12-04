@@ -16,12 +16,10 @@ def generator():
 		
 		try:
 			size = float(size)
+			assert size < 10 # 10MB is enough!
 		except:
 			size = 1
-		
-		if size > 10:
-			size = 1
-		
+			
 		size = int(size*829*1293)
 		
 		data = os.urandom(size)
